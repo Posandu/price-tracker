@@ -4,7 +4,7 @@ config();
 
 const URL =
 	"https://www.simplytek.lk/products/anker-space-one-pro-foldable-over-ear-headphones.js";
-const FILE_PATH = "prices.txt";
+const FILE_PATH = "prices";
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
 const IMPORTANT_PING = "<@961161387101536296>";
 
