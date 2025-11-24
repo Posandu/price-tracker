@@ -23,9 +23,9 @@ if (!fileExists) {
 	await Bun.file(FILE_PATH).write("");
 }
 
-const fileContent = (fileExists ? await Bun.file(FILE_PATH).text() : "").split(
-	"\n"
-);
+const fileContent = (fileExists ? await Bun.file(FILE_PATH).text() : "")
+	.split("\n")
+	.filter(Boolean);
 
 const lastPrice = +(fileContent.at(-1)?.trim() ?? "0");
 
@@ -64,6 +64,17 @@ const trendColor =
 	priceChange > 0 ? 0xff3b3b : priceChange < 0 ? 0x51d88a : 0x7289da;
 const trendEmoji = priceChange > 0 ? "🔺" : priceChange < 0 ? "🔻" : "⏸️";
 
+const dropImage = "https://i.pinimg.com/736x/e3/04/fb/e304fb3fc20245bb7964b9026c0b7997.jpg";
+const increaseImage = "https://thumbs.dreamstime.com/b/homeless-emoticon-homeless-beggar-emoticon-begging-money-141585055.jpg";
+const neutralImage = "https://img.freepik.com/premium-vector/happy-emoji-emoticon-holding-dollar-bills-cash-money_1303870-189.jpg";
+
+const selectedImage =
+	realPrice < lastPrice
+		? dropImage
+		: realPrice > lastPrice
+		? increaseImage
+		: neutralImage;
+
 const embed = {
 	content: realPrice < lastPrice ? `**Price Drop!** ${IMPORTANT_PING}` : "",
 	embeds: [
@@ -99,13 +110,12 @@ const embed = {
 						: "No change in price.",
 			},
 			thumbnail: {
-				url: "https://img.freepik.com/premium-vector/happy-emoji-emoticon-holding-dollar-bills-cash-money_1303870-189.jpg",
+				url: selectedImage,
 			},
 		},
 	],
 	username: "💸 Prices Bot",
-	avatar_url:
-		"https://img.freepik.com/premium-vector/happy-emoji-emoticon-holding-dollar-bills-cash-money_1303870-189.jpg",
+	avatar_url: selectedImage,
 	attachments: [],
 };
 
