@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config();
 
 const URL =
-	"https://www.simplytek.lk/products/anker-space-one-pro-foldable-over-ear-headphones.js";
+	"https://www.simplytek.lk/products/anker-liberty-4-nc-all-new-true-wireless-earbuds.js";
 const FILE_PATH = "prices";
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
 const IMPORTANT_PING = "<@961161387101536296>";
